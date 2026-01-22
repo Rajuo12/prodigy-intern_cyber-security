@@ -1,32 +1,32 @@
-# PRODIGY_CS_05
-This is my intership repo 
-# Network Packet Analyzer
+# Network Packet Analyzer (Tkinter + Scapy)
 
-A GUI-based network packet analyzer that captures and analyzes network packets, displaying relevant information such as source and destination IP addresses, protocols, and payload data.
+A compact GUI packet sniffer that uses Scapy to capture IPv4 packets and displays basic info in a Tkinter scrolled text area.
 
-## Features
+Quick summary
+- Shows Source IP, Destination IP, Protocol (TCP/UDP/ICMP/Other), and a short hex payload preview.
+- Start/Stop buttons; sniffing runs in a background thread so the UI stays responsive.
 
-- Capture and analyze network packets in real-time.
-- Displays packet details including source and destination IP, protocol, and payload.
-- User-friendly GUI built with Tkinter.
+Requirements
+- Python 3.8+
+- scapy (`pip install scapy`)
+- Tkinter (usually included)
+- Elevated privileges to capture packets (root / Administrator). On Windows, install Npcap.
 
-## Requirements
+Run
+- Save as `packet_analyzer.py` and run with appropriate privileges:
+  - macOS/Linux: `sudo python packet_analyzer.py`
+  - Windows: run as Administrator
 
-- Python 3.6 or higher
-- `scapy` library
-- `tkinter` (comes pre-installed with Python)
+Security & legal
+- Packet capture can expose sensitive data. Only run on networks/devices you own or have permission to monitor. Follow laws and policies.
 
-## Installation
+Notes & tips
+- To reduce noise, add a BPF filter (e.g., `sniff(filter="tcp port 80", ...)`) or select an interface.
+- For heavy traffic, batch UI updates or log to a file/PCAP to avoid slowdown.
+- If Scapy or permissions fail, verify installation and run context (Npcap on Windows; `python3-tk` on Debian/Ubuntu for Tkinter).
 
-### Windows
+Minimal example
+The app captures packets and appends formatted summaries to the display area (see script supplied with this README).
 
-1. **Install Python**:
-   - Download and install Python from the [official website](https://www.python.org/downloads/). Ensure you check the option to add Python to your PATH.
-
-2. **Install Scapy**:
-   Open Command Prompt and run:
-   ```bash
-   pip install scapy
-git clone https://github.com/yourusername/network-packet-analyzer.git
-cd network-packet-analyzer
-python network_packet_analyzer.py
+License
+MIT — use responsibly.
